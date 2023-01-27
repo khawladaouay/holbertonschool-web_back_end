@@ -9,7 +9,7 @@ class BasicCache(BaseCaching):
 
     def put(self, key, item):
         """ insert element into the dict """
-        if  key and item:
+        if key and item:
             self.cache_data[key] = item
 
     def get(self, key):
