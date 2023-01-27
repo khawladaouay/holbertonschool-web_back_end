@@ -8,7 +8,7 @@ class LIFOCache(BaseCaching):
 
     def __init__(self):
         super().__init__()
-        self.last_key = []
+        self.last_key = ''
 
     def put(self, key, item):
         """assign to the dictionary
@@ -19,12 +19,11 @@ class LIFOCache(BaseCaching):
                 return
 
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                item_discarded = self.last_key.pop(0)
-                del self.cache_data[item_discarded]
-                print("DISCARD:", item_discarded)
-
+                print('DISCARD: {}'.format(self.last_key))
+                del self.cache_data[self.last_key]
             self.cache_data[key] = item
-            self.last_key.append(key)
+            self.last_key = key
+
     def get(self, key):
         """return the value in self.cache_data linked to key"""
         if key in self.cache_data:
