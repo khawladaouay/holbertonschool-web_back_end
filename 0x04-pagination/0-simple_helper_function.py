@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-index_range 
+index_range
 """
 
 
