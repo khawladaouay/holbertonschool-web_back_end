@@ -44,3 +44,15 @@ class Cache():
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
+
+    def call_history(method: Callable) -> Callable:
+        inputs = method.__qualname__ + ":inputs"
+        outputs = method.__qualname__ + ":outputs"
+
+        @functools.wraps(method)
+        def wrapper(self, *args, **kwds):
+            self._redis.rpush(inputs, str(args))
+            returned_method = method(self, *args, **kwds)
+            self._redis.rpush(outputs, str(returned_method))
+            return returned_method
+        return wrapper
