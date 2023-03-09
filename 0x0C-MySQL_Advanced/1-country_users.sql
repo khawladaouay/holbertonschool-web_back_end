@@ -1,8 +1,8 @@
--- a SQL script that creates a table users
+-- create users table SQL, add country column
 
-CREATE TABLE IF NOT EXIST users (
-	id INT PRIMARY KEY AUTOINCREMENT NOT NULL,
-	email VARCHAR(255) NOT NULL unique,
-	name VARCHAR(255),
-	country ENUM ('US','CO','TN') NOT NULL
+CREATE TABLE IF NOT EXISTS users (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255),
+    country ENUM ('US', 'CO', 'TN') NOT NULL
 );
