@@ -5,6 +5,25 @@ export default class HolbertonCourse {
     this._students = students;
   }
 
+  static verify(name = null, length = null, students = null) {
+    if (name !== null && typeof name !== 'string') {
+      throw TypeError('Name must be a string');
+    }
+    if (length !== null && typeof length !== 'number') {
+      throw TypeError('Length must be a string');
+    }
+    if (students !== null && !(Array.isArray(students))) {
+      throw TypeError('Students must be an array of strings');
+    }
+    if (students !== null) {
+      for (const x of students) {
+        if (typeof x !== 'string') {
+          throw TypeError('Students must be an array of strings');
+        }
+      }
+    }
+  }
+
   get name () {
     return this._name;
   }
